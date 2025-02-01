@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      output_version: ${{steps.project_version.outputs.version}}
+      output_version: ${{ steps.project_version.outputs.version }}
 
     steps:
       - name: Checkout
@@ -26,7 +26,7 @@ jobs:
 
       - name: Get project version
         id: project_version
-        run: echo version=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec) >> "GITHUB_OUTPUT"
+        run: echo version=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec) >> "$GITHUB_OUTPUT"
 
       - name: Maven build
         run: mvn package -Dmaven.test.skip
@@ -39,5 +39,5 @@ jobs:
     steps:
       - name: Printing version
         env:
-          PROJECT_VERSION: ${{needs.build.outputs.output_version}}
+          PROJECT_VERSION: ${{ needs.build.outputs.output_version }}
         run: echo $PROJECT_VERSION
