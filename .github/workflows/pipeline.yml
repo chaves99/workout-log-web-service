@@ -47,7 +47,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: jar_file
-          path: .
+          path: target/
 
       - name: Show artifact
         run: ls -la
