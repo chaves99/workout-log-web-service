@@ -58,4 +58,4 @@ jobs:
           USER: ${{ secrets.DOCKERHUB_USER }}
         with:
           push: true
-          tags: $USER/workout-log-web-service:$PROJECT_VERSION
+          tags: ${{env.USER}}/workout-log-web-service:${{env.PROJECT_VERSION}}
